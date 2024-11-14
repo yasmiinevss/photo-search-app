@@ -1,0 +1,20 @@
+  <div *ngIf="photoDetails">
+  <h2>{{ photoDetails.photo.title._content }}</h2>
+  <img [src]="'https://farm' + photoDetails.photo.farm + '.staticflickr.com/' + photoDetails.photo.server + '/' + photoDetails.photo.id + '_' + photoDetails.photo.secret + '.jpg'" 
+       [alt]="photoDetails.photo.title._content" />
+  <p>Description: {{ photoDetails.photo.description._content }}</p>
+  <p>Photo prise par : {{ photoDetails.photo.owner.username }}</p>
+  <p>Date de prise : {{ photoDetails.photo.dates.taken }}</p>
+  <p>Date de  publication : {{ getFormattedPublicationDate() }}</p>
+  <p>Commentaires : {{ photoDetails.photo?.comments?.count || 0 }}</p>
+
+  <!-- autres pics -->
+   <h3>Autres photos de {{ photoDetails.photo.owner.username }}  </h3>
+   <div *ngFor="let photo of authorPhotos" class="photo-item">
+    <p>{{ photo.title }} : </p>
+      <img [src]="'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg'" 
+           [alt]="photo.title" />
+      
+    </div>
+  </div>
+

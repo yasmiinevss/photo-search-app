@@ -1,0 +1,39 @@
+
+<!------------------ Menu deroulant pour filtres -------------------------------->
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Filtres
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+<!-------------------------------------------------------------- FILTRES --------------------------------------------------------------------------->
+<div class="filtres">
+  <div>
+  <!-- Date min et max  de prise-->
+  <label >
+    Photo prise entre : <input  type="date" [(ngModel)]="filters.minTakenDate" /> et <input type="date" [(ngModel)]="filters.maxTakenDate" />
+  </label>
+ </div>
+
+ <div>
+  <!-- Date min et max publication-->
+  <label>
+    Photo postée entre : <input type="date" [(ngModel)]="filters.minUploadDate" /> et <input type="date" [(ngModel)]="filters.maxUploadDate" />
+  </label>
+ </div>
+
+  <!-- Ok! On applique tous les filtres! -->
+  <button (click)="applyFilters()">Appliquer les filtres</button>
+</div>
+</mat-expansion-panel>
+
+<!-------------------------------------------------------------- AFFICHAGE ---------------------------------------------------------------->
+<div *ngFor="let photo of photos" class="photo-item">
+  <p>{{ photo.title }} :</p>
+  <img [src]="'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg'" 
+       [alt]="photo.title" />
+  <button [routerLink]="['/details', photo.id]">Details de la photo</button>
+</div>
+
+   
